@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/django_db_analytics.iml" filepath="$PROJECT_DIR$/.idea/django_db_analytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../django-db-analytics/.idea/django-db-analytics.iml" filepath="$PROJECT_DIR$/../django-db-analytics/.idea/django-db-analytics.iml" />
     </modules>
   </component>
 </project>

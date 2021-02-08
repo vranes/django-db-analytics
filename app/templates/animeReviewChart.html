@@ -1,0 +1,59 @@
+
+
+{% block title %}
+    Popularity analytics
+{% endblock title %}
+
+{% block content %}
+    Anime popularity analytics - Reviews per anime entry in a specified date interval
+    <canvas id="myChart" width="400" height="170"></canvas>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+<script>
+$(document).ready(function () {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    alert('paaaa')
+    const myChart = new Chart(ctx, {
+        type: '{{char_type}}',
+        data: {
+            labels: [{% for item in qs %}'{{item.anime}}',{% endfor %}],
+            datasets: [{
+                label: '# of Reviews',
+                data: [{% for item in qs %}{{item.number_of_reviews}},{% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+});
+</script>
+{% endblock scripts %}
+

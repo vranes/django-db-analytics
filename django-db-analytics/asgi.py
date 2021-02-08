@@ -1,5 +1,5 @@
 """
-ASGI config for django_db_analytics project.
+ASGI config for django-db-analytics project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_db_analytics.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django-db-analytics.settings')
 
 application = get_asgi_application()

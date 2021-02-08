@@ -1,0 +1,55 @@
+
+
+{% block title %}
+    User analytics - User review activity in a specified date interval
+{% endblock title %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+$(document).ready(function () {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: '{{char_type}}',
+        data: {
+            labels: [{% for item in qs %}'{{item.user}}',{% endfor %}],
+            datasets: [{
+                label: '# of Reviews',
+                data: [{% for item in qs %}{{item.number_of_reviews}},{% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+});
+</script>
+{% endblock scripts %}
+
+{% block content %}
+    <canvas id="myChart" width="200" height="90"></canvas>
+{% endblock content %}

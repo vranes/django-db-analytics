@@ -1,0 +1,21 @@
+{%  extends 'global/master.html' %}
+
+{% block title %}
+    Trips
+{% endblock %}
+
+{%  block content %}
+    <div class="list-group">
+        {% for trip in trips %}
+            <a class="list-group-item list-group-item-action" href="{% url 'app:trip' trip.id %}">
+                {{ trip.destination }}
+            </a>
+            <br>
+        {% endfor %}
+        {% if perms.app.add_trip %}
+                    <a href="{% url 'app:new' %}">
+                        <span class="badge badge-primary">Add new trip</span>
+                    </a>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'global/master.html' %}
+
+{% block title %}
+    trip.destination
+{% endblock %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>
+                {{ trip.destination }}
+                {% if perms.app.change_trip %}
+                    <a href="{% url 'app:edit' trip.id %}">
+                        <span class="badge badge-primary">Edit</span>
+                    </a>
+                {% endif %}
+                {% if perms.app.delete_trip %}
+                    <a href="{% url 'app:delete' trip.id %}">
+                        <span class="badge badge-primary">Delete</span>
+                    </a>
+                {% endif %}
+            </h1>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>Date: {{ trip.date }}</p>
+                <p>Cost: {{ trip.cost }}.00$</p>
+                <p>Number of travellers who attended: {{ trip.num_travellers }}</p>
+
+                <a href="{% url 'app:trip_entries' trip.id %}">
+                    <span class="badge badge-primary">See diary entries</span>
+                </a>
+
+                {% if perms.app.add_entry %}
+                    <a href="{% url 'app:new_entry' id=trip.id %}">
+                        <span class="badge badge-primary">Add diary entry</span>
+                    </a>
+                {% endif %}
+                <footer class="blockquote-footer">
+                    Agency:
+                    <cite title="Source Title">
+                        {{ trip.travel_agency }}
+                    </cite>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+
+{% endblock %}
